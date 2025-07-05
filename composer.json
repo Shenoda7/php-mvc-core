@@ -1,0 +1,16 @@
+{
+    "name": "shenoda/php-mvc-core",
+    "description": "Core components of a custom-built PHP MVC framework",
+    "autoload": {
+        "psr-4": {
+            "Shenoda\\PhpMvcCore\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Shenoda",
+            "email": "shenodamakramibrahim@gmail.com"
+        }
+    ],
+    "require": {}
+}
