@@ -1,5 +1,5 @@
 {
-    "name": "shenoda/php-mvc-core",
+    "name": "shenoda/php-mvc-reusable-core",
     "description": "Core components of a custom-built PHP MVC framework",
     "autoload": {
         "psr-4": {
