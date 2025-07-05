@@ -8,7 +8,7 @@ use shenoda\phpmvc\db\DbModel;
 class Application
 {
     public string $layout = "main";
-    public string $userClass;
+    public ?string $userClass;
     public Request $request;
     public Router $router;
     public Response $response;
@@ -25,7 +25,7 @@ class Application
         self::$ROOT_DIR = $rootPath;
         self::$app = $this;
 
-        $this->userClass = $config['userClass'];
+        $this->userClass = $config['userClass'] ?? null;
         $this->request = new Request();
         $this->response = new Response();
         $this->router = new Router($this->request, $this->response);
