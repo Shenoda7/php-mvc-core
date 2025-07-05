@@ -3,7 +3,7 @@
     "description": "Core components of a custom-built PHP MVC framework",
     "autoload": {
         "psr-4": {
-            "Shenoda\\PhpMvcCore\\": "src/"
+            "Shenoda\\phpmvc\\": "src/"
         }
     },
     "authors": [

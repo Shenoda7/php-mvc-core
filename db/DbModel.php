@@ -1,9 +1,9 @@
 <?php
 
-namespace app\core\db;
+namespace shenoda\phpmvc\db;
 
-use app\core\Application;
-use app\core\Model;
+use shenoda\phpmvc\Application;
+use shenoda\phpmvc\Model;
 
 abstract class DbModel extends Model
 {

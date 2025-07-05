@@ -1,8 +1,8 @@
 <?php
 
-namespace app\core;
+namespace shenoda\phpmvc;
 
-use app\core\exception\NotFoundException;
+use shenoda\phpmvc\exception\NotFoundException;
 
 class Router
 {
@@ -39,7 +39,7 @@ class Router
             return Application::$app->view->renderView($callback);
         }
         if (is_array($callback)) {
-            /** @var \app\core\Controller $controller */
+            /** @var \shenoda\phpmvc\Controller $controller */
             $controller = new $callback[0]();
             Application::$app->controller = $controller;
             $controller->action = $callback[1];

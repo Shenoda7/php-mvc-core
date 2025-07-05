@@ -1,9 +1,9 @@
 <?php
 
-namespace app\core;
+namespace shenoda\phpmvc;
 
-use app\core\db\Database;
-use app\core\db\DbModel;
+use shenoda\phpmvc\db\Database;
+use shenoda\phpmvc\db\DbModel;
 
 class Application
 {

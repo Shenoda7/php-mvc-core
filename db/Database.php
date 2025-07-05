@@ -1,8 +1,8 @@
 <?php
 
-namespace app\core\db;
+namespace shenoda\phpmvc\db;
 
-use app\core\Application;
+use shenoda\phpmvc\Application;
 
 class Database
 {

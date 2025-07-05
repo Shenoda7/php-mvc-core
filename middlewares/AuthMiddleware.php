@@ -1,9 +1,9 @@
 <?php
 
-namespace app\core\middlewares;
+namespace shenoda\phpmvc\middlewares;
 
-use app\core\Application;
-use app\core\exception\ForbiddenException;
+use shenoda\phpmvc\Application;
+use shenoda\phpmvc\exception\ForbiddenException;
 
 class AuthMiddleware extends BaseMiddleware
 {

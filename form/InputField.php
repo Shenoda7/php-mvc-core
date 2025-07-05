@@ -1,8 +1,8 @@
 <?php
 
-namespace app\core\form;
+namespace shenoda\phpmvc\form;
 
-use app\core\Model;
+use shenoda\phpmvc\Model;
 
 class InputField extends BaseField
 {

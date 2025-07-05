@@ -1,8 +1,8 @@
 <?php
 
-namespace app\core;
+namespace shenoda\phpmvc;
 
-use app\core\middlewares\BaseMiddleware;
+use shenoda\phpmvc\middlewares\BaseMiddleware;
 
 class Controller
 {

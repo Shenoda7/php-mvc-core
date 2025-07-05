@@ -1,8 +1,8 @@
 <?php
 
-namespace app\core;
+namespace shenoda\phpmvc;
 
-use app\core\db\DbModel;
+use shenoda\phpmvc\db\DbModel;
 
 abstract class UserModel extends DbModel
 {
