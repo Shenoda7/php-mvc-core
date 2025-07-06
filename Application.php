@@ -7,6 +7,10 @@ use shenoda\phpmvc\db\DbModel;
 
 class Application
 {
+    const EVENT_BEFORE_REQUEST = 'beforeRequest';
+    const EVENT_AFTER_REQUEST = 'afterRequest';
+    protected array $eventListeners = [];
+
     public string $layout = "main";
     public ?string $userClass = null;
     public Request $request;
@@ -22,6 +26,7 @@ class Application
 
     public function __construct($rootPath, array $config)
     {
+
         self::$ROOT_DIR = $rootPath;
         self::$app = $this;
 
@@ -80,12 +85,26 @@ class Application
 
     public function run(): void
     {
+        $this->triggerEvent(self::EVENT_BEFORE_REQUEST);
         try {
             echo $this->router->resolve();
         } catch (\Exception $e) {
             $this->response->setStatusCode($e->getCode());
 
             echo $this->view->renderView('_error', ['exception' => $e]);
+        }
+    }
+
+    public function on($eventName, $callback)
+    {
+        $this->eventListeners[$eventName][] = $callback;
+    }
+
+    public function triggerEvent($eventName)
+    {
+        $callbacks = $this->eventListeners[$eventName] ?? [];
+        foreach ($callbacks as $callback) {
+            call_user_func($callback);
         }
     }
 }
