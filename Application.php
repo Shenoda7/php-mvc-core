@@ -8,7 +8,7 @@ use shenoda\phpmvc\db\DbModel;
 class Application
 {
     public string $layout = "main";
-    public ?string $userClass;
+    public ?string $userClass = null;
     public Request $request;
     public Router $router;
     public Response $response;
@@ -32,11 +32,14 @@ class Application
         $this->session = new Session();
         $this->view = new View();
 
+        if (!isset($config['db'])) {
+            throw new \InvalidArgumentException('Database configuration is required');
+        }
         $this->db = new Database($config['db']);
 
         $primaryValue = $this->session->get('user');
         if ($primaryValue && $this->userClass) {
-            $primaryKey = $this->userClass::PrimaryKey();
+            $primaryKey = $this->userClass::primaryKey();
             $this->user = $this->userClass::findOne([$primaryKey => $primaryValue]);
         } else {
             $this->user = null;
@@ -56,11 +59,10 @@ class Application
     public function login(UserModel $user)
     {
         $this->user = $user;
-        $primaryKey = $user->primaryKey(); // "id"
+        $primaryKey = $user::primaryKey(); // "id"
         $primaryValue = $user->{$primaryKey};
 
         $this->session->set("user", $primaryValue);
-
 
         return true;
     }
