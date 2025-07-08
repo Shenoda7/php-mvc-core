@@ -18,7 +18,8 @@ class Database
         $this->pdo->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
     }
 
-    public function applyMigrations() {
+    public function applyMigrations()
+    {
         $this->createMigrationsTable();
         $appliedMigrations = $this->getAppliedMigrations();
         
@@ -31,7 +32,7 @@ class Database
             if($migration === '.' || $migration === '..') {
                 continue;
             }
-            require_once Application::$ROOT_DIR . '/migrations/' . $migration;
+            include_once Application::$ROOT_DIR . '/migrations/' . $migration;
 
             $className = pathinfo($migration, PATHINFO_FILENAME);
             $instance = new $className();
@@ -48,32 +49,39 @@ class Database
         }
     }
 
-    public function createMigrationsTable() {
-        $this->pdo->exec("CREATE TABLE IF NOT EXISTS migrations (
+    public function createMigrationsTable()
+    {
+        $this->pdo->exec(
+            "CREATE TABLE IF NOT EXISTS migrations (
             id INT AUTO_INCREMENT PRIMARY KEY,
             migration VARCHAR(255),
             created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-        ) ENGINE=INNODB");
+        ) ENGINE=INNODB"
+        );
     }
 
-    public function getAppliedMigrations() {
+    public function getAppliedMigrations()
+    {
         $stmt = $this->pdo->prepare("SELECT migration FROM migrations");
         $stmt->execute();
 
         return $stmt->fetchAll(\PDO::FETCH_COLUMN);
     }
 
-    public function saveMigrations(array $migrations) {
+    public function saveMigrations(array $migrations)
+    {
         $str = implode(",", array_map(fn($migration) => "('$migration')", $migrations));
         $stmt = $this->pdo->prepare("INSERT INTO migrations (migration) VALUES $str");
         $stmt->execute();
     }
 
-    public function prepare($sql) {
+    public function prepare($sql)
+    {
         return $this->pdo->prepare($sql);
     }
 
-    public function log($message) {
+    public function log($message)
+    {
         echo '[' . date('Y-m-d H:i:s').'] - ' . $message . PHP_EOL;
     }
 }

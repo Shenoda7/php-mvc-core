@@ -24,7 +24,8 @@ abstract class Model
 
     abstract public function labels(): array;
 
-    public function getLabel($attribute) {
+    public function getLabel($attribute)
+    {
         return $this->labels()[$attribute] ?? $attribute;
     }
 

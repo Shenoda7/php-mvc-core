@@ -31,7 +31,8 @@ abstract class DbModel extends Model
         return true;
     }
 
-    public static function findOne($where) {
+    public static function findOne($where)
+    {
         $tableName = static::tableName();
         $attributes = array_keys($where);
 

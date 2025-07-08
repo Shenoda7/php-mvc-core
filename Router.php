@@ -39,7 +39,9 @@ class Router
             return Application::$app->view->renderView($callback);
         }
         if (is_array($callback)) {
-            /** @var \shenoda\phpmvc\Controller $controller */
+            /**
+ * @var \shenoda\phpmvc\Controller $controller 
+*/
             $controller = new $callback[0]();
             Application::$app->controller = $controller;
             $controller->action = $callback[1];
